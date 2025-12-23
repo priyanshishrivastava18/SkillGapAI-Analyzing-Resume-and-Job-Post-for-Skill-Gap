@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resume & JD Parser</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="header">
+    <h2>Milestone 1: Data Ingestion & Parsing</h2>
+    <p>Upload Resume & Job Description (TXT | PDF | DOCX)</p>
+</div>
+
+<div class="container">
+
+    <div class="upload-box">
+        <h3>Upload Document</h3>
+        <form method="POST" enctype="multipart/form-data">
+            <select name="doc_type" required>
+                <option value="resume">Resume</option>
+                <option value="jd">Job Description</option>
+            </select>
+
+            <input type="file" name="document" required>
+            <button type="submit">Upload & Parse</button>
+        </form>
+
+        {% if message %}
+            <p class="msg">{{ message }}</p>
+        {% endif %}
+    </div>
+
+    <div class="preview-box">
+        <h3>Document Preview</h3>
+
+        <div class="tabs">
+            <button onclick="showResume()">Resume</button>
+            <button onclick="showJD()">Job Description</button>
+        </div>
+
+        <pre id="resume">{{ resume_text }}</pre>
+        <pre id="jd" style="display:none;">{{ jd_text }}</pre>
+    </div>
+
+</div>
+
+<script>
+function showResume() {
+    document.getElementById("resume").style.display = "block";
+    document.getElementById("jd").style.display = "none";
+}
+function showJD() {
+    document.getElementById("resume").style.display = "none";
+    document.getElementById("jd").style.display = "block";
+}
+</script>
+
+</body>
+</html>
+
